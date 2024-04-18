@@ -15,9 +15,9 @@ class TestMaquinaDeCafe(unittest.TestCase):
 
     def setUp(self) -> None:
         self.cafetera = Cafetera(50)
-        self.vasosPequeno = Vaso(5,10)
-        self.vasosMediano = Vaso(5,20)
-        self.vasosGrande = Vaso(5,30)
+        self.vasosPequeno = Vaso(5,3)
+        self.vasosMediano = Vaso(5,5)
+        self.vasosGrande = Vaso(5,7)
         self.azucarero = Azucarero(20)
 
         self.maquinaDeCafe = MaquinaCafe()
@@ -55,7 +55,7 @@ class TestMaquinaDeCafe(unittest.TestCase):
 
     def test_DeberiaDevolverNoHayCafe(self) -> None:
 
-        cafetera = Cafetera(5)
+        cafetera = Cafetera(1)
         self.maquinaDeCafe.setCafetera(cafetera)
 
         vaso = self.maquinaDeCafe.getTipoDeVaso("pequeno")
@@ -76,20 +76,20 @@ class TestMaquinaDeCafe(unittest.TestCase):
         self.assertEquals("No hay Azucar",resultado) 
     
     def test_DeberiaRestarCafe(self) -> None:
-        vaso = self.maquinaDeCafe.getTipoDeVaso("pequeno")
+        vaso = self.maquinaDeCafe.getTipoDeVaso("grande")
         
         self.maquinaDeCafe.getVasoDeCafe(vaso,1,3)
 
         resultado = self.maquinaDeCafe.getCafetera().getCantidadCafe()
 
-        self.assertEquals(40,resultado) 
+        self.assertEquals(43,resultado) 
     
     def test_DeberiaRestarVaso(self) -> None:
-        vaso = self.maquinaDeCafe.getTipoDeVaso("pequeno")
+        vaso = self.maquinaDeCafe.getTipoDeVaso("grande")
         
         self.maquinaDeCafe.getVasoDeCafe(vaso,1,3)
 
-        resultado = self.maquinaDeCafe.getVasosPequeno().getCantidadVasos()
+        resultado = self.maquinaDeCafe.getVasosGrande().getCantidadVasos()
 
         self.assertEquals(4,resultado) 
 

@@ -2,6 +2,7 @@ from implementacion.vaso import Vaso
 from implementacion.cafetera import Cafetera
 from implementacion.azucarero import Azucarero
 
+
 class MaquinaCafe:
 
     cafe = Cafetera(0)
@@ -32,6 +33,12 @@ class MaquinaCafe:
     
     def getVasosPequeno(self):
         return self.vasosPequenos
+    
+    def getVasosMediano(self):
+        return self.vasosMedianos
+    
+    def getVasosGrande(self):
+        return self.vasosGrandes
     
     def getAzucarero(self):
         return self.azucar
@@ -68,15 +75,24 @@ class MaquinaCafe:
                 return "No hay Cafe"
             elif cantidadDeAzucar > self.azucar.cantidadDeAzucar:
                 return "No hay Azucar" 
-                
-            
+            else: 
+                self.cafe.cantidadCafe =  self.cafe.cantidadCafe - self.vasosMedianos.contenido
+                self.vasosMedianos.cantidadVasos =  self.vasosMedianos.cantidadVasos - cantidadDeVasos
+                self.azucar.cantidadDeAzucar =  self.azucar.cantidadDeAzucar - cantidadDeAzucar
+                return "Felicitaciones"
+
         elif self.vasosGrandes == vaso:
             if cantidadDeVasos > self.vasosGrandes.cantidadVasos:
                 return "No hay Vasos"
             elif self.cafe.cantidadCafe < self.vasosGrandes.contenido:
                 return "No hay Cafe"
             elif cantidadDeAzucar > self.azucar.cantidadDeAzucar:
-                return "No hay Azucar" 
+                return "No hay Azucar"
+            else: 
+                self.cafe.cantidadCafe =  self.cafe.cantidadCafe - self.vasosGrandes.contenido
+                self.vasosGrandes.cantidadVasos =  self.vasosGrandes.cantidadVasos - cantidadDeVasos
+                self.azucar.cantidadDeAzucar =  self.azucar.cantidadDeAzucar - cantidadDeAzucar
+                return "Felicitaciones" 
             
         
             
